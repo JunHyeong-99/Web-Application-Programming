@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>학생증 만들기</title>
+        <style>            
+            .titleDiv {
+                border: 1px solid gray;
+                background-color : gray;
+                text-align : left;
+                height: 30px; 
+                color : white;                
+            }  
+            .temp, .titleDiv  {
+                margin : 5px;
+                padding: 5px;                 
+                width: 400px;  
+            }
+            p > label {                
+                background-color: white;
+                padding : 5px;
+                width : 100%;
+                height : 30px;
+                font-size: 15px;
+                text-align: center;
+                font-weight: bolder;
+                display : block ;
+            }
+            input[type=text], input[type=date], select {
+                width : 100%;
+                height : 30px;
+                border : 1px solid #8C8C8C;
+                box-sizing: border-box;
+                padding : 5px;
+            }
+            input[type=button], input[type=reset]{                
+                color : white ;
+                width : 45%;                
+                padding : 10px;
+                margin : 5px;                
+                box-sizing: border-box;
+                border : none;
+                background-color : gray;
+            } 
+            span {
+                display : inline-block ;
+                width : 50%;
+                padding : 10px 15px;
+                font-size: 15px;
+                box-sizing: border-box;
+                text-align: left;
+                font-weight: bolder;
+            }
+            .identity {
+                visibility: hidden;
+                border: 1px solid black;
+                border-radius: 20px;
+                width: 350px;
+                transition: 1s;
+            } 
+            .identity:hover {
+                transform: rotate(180deg)
+            }
+            .idHead1 {
+                width: 100%;
+                text-align: center;
+                font-size: 15px;
+            }  
+            .idbox {
+                color:gray;
+            }   
+        </style>
+        <script>
+            function makeId() {
+                var name = document.forms[0].textName.value;
+                var Id = document.forms[0].textId.value;
+                var grade = document.forms[0].textGrade.value;
+                var status = document.forms[0].textStatus.value;
+                var birthdate = document.forms[0].birthData.value;
+                var Smajor = document.forms[0].textMajor.value;
+
+                if (name == "" || Id == "" || grade == "" || status == "" || birthdate == "" || Smajor == "")
+                {
+                    window.alert("모든 정보를 입력해 주세요.");
+                }
+                else 
+                {
+                    document.getElementById("stName").innerHTML = name;
+                    document.getElementById("Id").innerHTML = Id;
+                    document.getElementById("grade").innerHTML = grade;
+                    document.getElementById("status").innerHTML = status;
+                    document.getElementById("date").innerHTML = birthdate;
+                    document.getElementById("Smajor").innerHTML = Smajor;
+                    document.getElementById("idCard").style.visibility = "visible";
+                }
+            }
+            function clearAll() {
+                document.getElementById("idCard").style.visibility = "hidden";
+            }
+        </script>
+    </head>
+    <body>
+        <form name="form1" id="form1">
+            <div class="titleDiv">학생증 만들기</div>
+            <div class="temp">
+                <p>
+                    <label for="textName">이름</label>
+                    <input type="text" name="textName" id="textName" placeholder="이름 입력"> 
+                </p>
+                <p>
+                    <label for="textId">학번</label>
+                    <input type="text" name="textId" id="textId" placeholder="학번 입력"> 
+                </p>
+                <p>
+                    <label for="textGrade">학년</label>
+                    <input type="text" name="textGrade" id="textGrade" placeholder="학년 입력" list="grades"> 
+                    <datalist id="grades">
+                        <option value="1학년"></option>
+                        <option value="2학년"></option>
+                        <option value="3학년"></option>
+                        <option value="4학년"></option>
+                    </datalist>
+                </p>
+                <p>
+                    <label for="textStatus">상태</label>
+                    <select type="text" name="textStatus" id="textStatus" placeholder="상태 입력">
+                        <option value="재학">재학</option>
+                        <option value="휴학">휴학</option>
+                        <option value="수료">수료</option>
+                        <option value="졸업">졸업</option>
+                        <option value="제적">제적</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="birthData">생년월일</label>
+                    <input type="date" name="birthData" id="birthData">
+                </p>
+                <p>
+                    <label for="textMajor">소속 학과</label>
+                    <input type="text" name="textMajor" id="textMajor" placeholder="학과 입력"> 
+                </p>
+                <p>
+                    <input type="button" value="학생증 출력" onclick="makeId()">
+                    <input type="reset" value="초기화" onclick="clearAll()">
+                </p>
+            </div>
+        </form>
+        <div class="identity" id="idCard">
+            <span class="idHead1">학생증</span><br>
+            <span class="idbox">이름</span><span class="idvalue" id="stName"></span>
+            <span class="idbox">학번</span><span class="idvalue" id="Id"></span>
+            <span class="idbox">학년</span><span class="idvalue" id="grade"></span>
+            <span class="idbox">상태</span><span class="idvalue" id="status"></span>
+            <span class="idbox">생년월일</span><span class="idvalue" id="date"></span>
+            <span class="idbox">소속</span><span class="idvalue" id="Smajor"></span>
+        </div>
+    </body>
+</html>
